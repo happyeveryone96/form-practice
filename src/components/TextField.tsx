@@ -1,7 +1,6 @@
 import { FunctionComponent } from "react";
 import { InputProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
-import { checkValidate } from "../utils/validate";
 
 const TextField: FunctionComponent<InputProps> = ({
   source,
@@ -13,17 +12,10 @@ const TextField: FunctionComponent<InputProps> = ({
   const {
     value,
     onChange,
-    minNameValidate,
-    maxNameValidate,
-    minPasswordValidate,
-    maxPasswordValidate,
   } = useInput({
     source,
     validate,
   });
-
-  const isNameValidate = source === "name";
-  const isPasswordValidate = source === "password";
 
   return (
     <div>
@@ -36,12 +28,7 @@ const TextField: FunctionComponent<InputProps> = ({
           type={type}
           placeholder={placeholder}
         />
-        <div>
-          {isNameValidate && checkValidate(minNameValidate, value)}
-          {isNameValidate && checkValidate(maxNameValidate, value)}
-          {isPasswordValidate && checkValidate(minPasswordValidate, value)}
-          {isPasswordValidate && checkValidate(maxPasswordValidate, value)}
-        </div>
+        <div></div>
       </div>
     </div>
   );

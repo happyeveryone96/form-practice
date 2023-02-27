@@ -7,14 +7,16 @@ interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
 function useInput(props: UseInputProps) {
   const { setValues, values } = useContext(FormContext);
   const { name, password } = values;
-  const [minValidate, maxValidate] = props.validate;
-  const minNameValidate = minValidate(name);
-  const maxNameValidate = maxValidate(name);
-  const minPasswordValidate = minValidate(password);
-  const maxPasswordValidate = maxValidate(password);
 
   const onChange = useCallback(
     (v: string | number) => {
+      props.validate.forEach(validateFunc => {
+        const error = validateFunc(v);
+        if (error) {
+          setError()
+        }
+      });
+
       setValues({
         ...values,
         [props.source]: v,
@@ -27,10 +29,6 @@ function useInput(props: UseInputProps) {
   return {
     value: values[props.source],
     onChange,
-    minNameValidate,
-    maxNameValidate,
-    minPasswordValidate,
-    maxPasswordValidate,
   };
 }
 
