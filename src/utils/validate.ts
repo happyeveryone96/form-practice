@@ -14,4 +14,4 @@ const max = (maxNum: number) => (value: string | undefined) => {
   }
 };
 
-export { min, max};
+export { min, max };

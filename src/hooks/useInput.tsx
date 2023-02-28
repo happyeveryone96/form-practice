@@ -5,16 +5,20 @@ import { FormContext } from "../components/SimpleForm";
 interface UseInputProps extends Pick<InputProps, "source" | "validate"> {}
 
 function useInput(props: UseInputProps) {
-  const { setValues, values } = useContext(FormContext);
-  const { name, password } = values;
+  const { setValues, values, setErrors, errors } = useContext(FormContext);
 
   const onChange = useCallback(
-    (v: string | number) => {
-      props.validate.forEach(validateFunc => {
+    (v: string) => {
+      const errs = props.validate.map((validateFunc) => {
         const error = validateFunc(v);
-        if (error) {
-          setError()
-        }
+        return error;
+      });
+
+      const [err] = errs.filter((e) => e !== undefined);
+
+      setErrors({
+        ...errors,
+        [props.source]: err,
       });
 
       setValues({
@@ -29,6 +33,7 @@ function useInput(props: UseInputProps) {
   return {
     value: values[props.source],
     onChange,
+    errors,
   };
 }
 

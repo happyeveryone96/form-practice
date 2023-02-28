@@ -8,14 +8,12 @@ export const FormContext = createContext({
 });
 
 const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
-  const [values, setValues] = useState({name: undefined, password: ""});
-  const [errors, setErrors] = useState({});
-  const value = useMemo(() => ({setValues, values, errors, setErrors}), [setValues, values, errors, setErrors]);
-
-  // errors = {
-  //   name: "5글자 이상 입력해주세요."
-  // password: undefined
-// }
+  const [values, setValues] = useState({ name: "", password: "" });
+  const [errors, setErrors] = useState({ name: "", password: "" });
+  const value = useMemo(
+    () => ({ setValues, values, errors, setErrors }),
+    [setValues, values, errors, setErrors]
+  );
 
   const onClick = (e: any) => {
     e.preventDefault();

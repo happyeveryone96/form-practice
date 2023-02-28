@@ -9,10 +9,7 @@ const TextField: FunctionComponent<InputProps> = ({
   type,
   validate,
 }) => {
-  const {
-    value,
-    onChange,
-  } = useInput({
+  const { value, onChange, errors } = useInput({
     source,
     validate,
   });
@@ -28,7 +25,8 @@ const TextField: FunctionComponent<InputProps> = ({
           type={type}
           placeholder={placeholder}
         />
-        <div></div>
+        <div>{source === "name" && errors.name}</div>
+        <div>{source === "password" && errors.password}</div>
       </div>
     </div>
   );
