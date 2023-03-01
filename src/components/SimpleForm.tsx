@@ -1,4 +1,5 @@
 import { createContext, PropsWithChildren, useMemo, useState } from "react";
+import { isEmpty, isError } from "../utils/validate";
 
 export const FormContext = createContext({
   setValues: (v: any) => {},
@@ -18,12 +19,9 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
     [setValues, values, errors, setErrors]
   );
 
-  const isError = errors.name !== undefined || errors.password !== undefined;
-  const isEmpty = values.name === "" && values.password === "";
-
   const onClick = (e: any) => {
     e.preventDefault();
-    if (isError || isEmpty) {
+    if (isError(errors) || isEmpty(values)) {
       alert("제출에 실패하였습니다. 회원 정보를 확인해주세요.");
     } else {
       alert(JSON.stringify(values));

@@ -14,4 +14,18 @@ const max = (maxNum: number) => (value: string | undefined) => {
   }
 };
 
-export { min, max };
+const isError = (obj: Record<string, any>) => {
+  for (let key in obj) {
+    const value = obj[key];
+    if (value !== undefined) return true;
+  }
+};
+
+const isEmpty = (obj: Record<string, any>) => {
+  for (let key in obj) {
+    const value = obj[key];
+    if (value === "") return true;
+  }
+};
+
+export { min, max, isError, isEmpty };
