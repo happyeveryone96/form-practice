@@ -25,8 +25,7 @@ const TextField: FunctionComponent<InputProps> = ({
           type={type}
           placeholder={placeholder}
         />
-        <div>{source === "name" && errors.name}</div>
-        <div>{source === "password" && errors.password}</div>
+        <div>{errors[source]}</div>
       </div>
     </div>
   );
