@@ -15,17 +15,11 @@ const max = (maxNum: number) => (value: string | undefined) => {
 };
 
 const isError = (obj: Record<string, any>) => {
-  for (let key in obj) {
-    const value = obj[key];
-    if (value !== undefined) return true;
-  }
+  return Object.values(obj).some((value) => value !== undefined);
 };
 
 const isEmpty = (obj: Record<string, any>) => {
-  for (let key in obj) {
-    const value = obj[key];
-    if (value === "") return true;
-  }
+  return Object.values(obj).some((value) => value === "");
 };
 
 export { min, max, isError, isEmpty };
