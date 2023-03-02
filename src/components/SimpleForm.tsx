@@ -1,5 +1,5 @@
 import { createContext, PropsWithChildren, useMemo, useState } from "react";
-import { isEmpty, hasError } from "../utils/validate";
+import { isEmpty, isEmptyObject } from "../utils/validate";
 
 export const FormContext = createContext({
   setValues: (v: any) => {},
@@ -10,10 +10,7 @@ export const FormContext = createContext({
 
 const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
   const [values, setValues] = useState({ name: "", password: "" });
-  const [errors, setErrors] = useState({
-    name: undefined,
-    password: undefined,
-  });
+  const [errors, setErrors] = useState({});
   const value = useMemo(
     () => ({ setValues, values, errors, setErrors }),
     [setValues, values, errors, setErrors]
@@ -21,8 +18,10 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
 
   const onClick = (e: any) => {
     e.preventDefault();
-    if (isEmpty(values)) {
+    if (!isEmptyObject(errors) && !isEmpty(errors)) {
       alert("제출에 실패하였습니다. 회원 정보를 확인해주세요.");
+    } else if (isEmpty(values)) {
+      alert("빈 칸을 확인해주세요.");
     } else {
       alert(JSON.stringify(values));
     }

@@ -15,7 +15,13 @@ const max = (maxNum: number) => (value: string | undefined) => {
 };
 
 const isEmpty = (obj: Record<string, any>) => {
-  return Object.values(obj).some((value) => value === "" || value === undefined);
-}
+  return Object.values(obj).some(
+    (value) => value === "" || value === undefined
+  );
+};
 
-export { min, max, isEmpty };
+const isEmptyObject = (obj: Record<string, any>) => {
+  return Object.keys(obj).length === 0;
+};
+
+export { min, max, isEmpty, isEmptyObject };

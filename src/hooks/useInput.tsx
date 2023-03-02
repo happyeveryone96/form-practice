@@ -16,10 +16,14 @@ function useInput(props: UseInputProps) {
 
       const err = errs.find((e) => e !== undefined);
 
-      setErrors({
-        ...errors,
-        [props.source]: err,
-      });
+      if (err === undefined) {
+        delete errors[props.source];
+      } else {
+        setErrors({
+          ...errors,
+          [props.source]: err,
+        });
+      }
 
       setValues({
         ...values,
