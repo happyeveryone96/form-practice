@@ -21,7 +21,7 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
 
   const onClick = (e: any) => {
     e.preventDefault();
-    if (hasError(errors) || isEmpty(values)) {
+    if (isEmpty(values)) {
       alert("제출에 실패하였습니다. 회원 정보를 확인해주세요.");
     } else {
       alert(JSON.stringify(values));

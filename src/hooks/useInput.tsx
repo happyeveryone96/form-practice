@@ -14,7 +14,7 @@ function useInput(props: UseInputProps) {
         return error;
       });
 
-      const [err] = errs.filter((e) => e !== undefined);
+      const err = errs.find((e) => e !== undefined);
 
       setErrors({
         ...errors,

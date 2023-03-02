@@ -14,12 +14,8 @@ const max = (maxNum: number) => (value: string | undefined) => {
   }
 };
 
-const hasError = (obj: Record<string, any>) => {
-  return Object.values(obj).some((value) => value !== undefined);
-};
-
 const isEmpty = (obj: Record<string, any>) => {
-  return Object.values(obj).some((value) => value === "");
-};
+  return Object.values(obj).some((value) => value === "" || value === undefined);
+}
 
-export { min, max, hasError, isEmpty };
+export { min, max, isEmpty };
