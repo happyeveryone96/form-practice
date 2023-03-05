@@ -9,7 +9,12 @@ export const FormContext = createContext({
 });
 
 const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
-  const [values, setValues] = useState({ name: "", password: "" });
+  const [values, setValues] = useState({
+    name: "",
+    password: "",
+    termsOfService: false,
+    marketingReception: false,
+  });
   const [errors, setErrors] = useState({});
   const value = useMemo(
     () => ({ setValues, values, errors, setErrors }),

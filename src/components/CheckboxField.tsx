@@ -2,14 +2,16 @@ import { FunctionComponent } from "react";
 import { InputProps } from "../types/InputProps";
 import useInput from "../hooks/useInput";
 
-const TextField: FunctionComponent<InputProps> = ({
+const CheckboxField: FunctionComponent<InputProps> = ({
   source,
   label,
-  placeholder,
+  validate,
   type,
 }) => {
   const { value, onChange } = useInput({
     source,
+    validate,
+    type,
   });
 
   return (
@@ -17,15 +19,14 @@ const TextField: FunctionComponent<InputProps> = ({
       <div style={{ display: "flex", gridGap: "8px" }}>
         <label htmlFor={source}>{label}</label>
         <input
-          value={value}
+          checked={value}
           onChange={(e) => onChange(e.target.value)}
           name={source}
-          type={type}
-          placeholder={placeholder}
+          type="checkbox"
         />
       </div>
     </div>
   );
 };
 
-export default TextField;
+export default CheckboxField;
