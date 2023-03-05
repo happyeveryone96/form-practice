@@ -15,16 +15,14 @@ const CheckboxField: FunctionComponent<InputProps> = ({
   });
 
   return (
-    <div>
-      <div style={{ display: "flex", gridGap: "8px" }}>
-        <label htmlFor={source}>{label}</label>
-        <input
-          checked={value}
-          onChange={(e) => onChange(e.target.value)}
-          name={source}
-          type="checkbox"
-        />
-      </div>
+    <div style={{ display: "flex", gridGap: "8px" }}>
+      <label htmlFor={source}>{label}</label>
+      <input
+        checked={value}
+        onChange={(e) => onChange(e.target.value)}
+        name={source}
+        type="checkbox"
+      />
     </div>
   );
 };

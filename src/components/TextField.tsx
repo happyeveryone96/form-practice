@@ -7,23 +7,24 @@ const TextField: FunctionComponent<InputProps> = ({
   label,
   placeholder,
   type,
+  validate,
 }) => {
-  const { value, onChange } = useInput({
+  const { value, onChange, errors } = useInput({
     source,
+    validate,
   });
 
   return (
-    <div>
-      <div style={{ display: "flex", gridGap: "8px" }}>
-        <label htmlFor={source}>{label}</label>
-        <input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          name={source}
-          type={type}
-          placeholder={placeholder}
-        />
-      </div>
+    <div style={{ display: "flex", gridGap: "8px" }}>
+      <label htmlFor={source}>{label}</label>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        name={source}
+        type={type}
+        placeholder={placeholder}
+      />
+      <div>{errors[source]}</div>
     </div>
   );
 };
