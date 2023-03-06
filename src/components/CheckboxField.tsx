@@ -6,12 +6,10 @@ const CheckboxField: FunctionComponent<InputProps> = ({
   source,
   label,
   validate,
-  type,
 }) => {
   const { value, onChange } = useInput({
     source,
     validate,
-    type,
   });
 
   return (
@@ -19,7 +17,7 @@ const CheckboxField: FunctionComponent<InputProps> = ({
       <label htmlFor={source}>{label}</label>
       <input
         checked={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.checked)}
         name={source}
         type="checkbox"
       />

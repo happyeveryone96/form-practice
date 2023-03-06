@@ -1,16 +1,16 @@
-import { InputProps } from "../types/InputProps";
-import { useCallback, useContext } from "react";
-import { FormContext } from "../components/SimpleForm";
+import {InputProps} from "../types/InputProps";
+import {useCallback, useContext} from "react";
+import {FormContext} from "../components/SimpleForm";
 
 interface UseInputProps
-  extends Pick<InputProps, "source" | "validate" | "type"> {}
+  extends Pick<InputProps, "source" | "validate"> {}
 
 function useInput(props: UseInputProps) {
-  const { validate, type } = props;
+  const { validate } = props;
   const { setValues, values, setErrors, errors } = useContext(FormContext);
 
   const onChange = useCallback(
-    (v: string) => {
+    (v: any) => {
       const errs = validate?.map((validateFunc) => {
         const error = validateFunc(v);
         return error;
@@ -27,17 +27,10 @@ function useInput(props: UseInputProps) {
         });
       }
 
-      if (type === "checkbox") {
-        setValues({
-          ...values,
-          [props.source]: !values[props.source],
-        });
-      } else {
         setValues({
           ...values,
           [props.source]: v,
         });
-      }
     },
 
     [values, props.source]
