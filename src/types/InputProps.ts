@@ -5,5 +5,5 @@ export interface InputProps {
   label: string;
   placeholder?: string;
   type?: HTMLInputTypeAttribute;
-  validate: ((value: string) => string | undefined)[];
+  validate?: ((value: any) => string | undefined)[];
 }
