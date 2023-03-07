@@ -14,6 +14,7 @@ const SimpleForm = ({ children }: PropsWithChildren<{}>) => {
     password: "",
     termsOfService: false,
     marketingReception: false,
+    color: "orange",
   });
   const [errors, setErrors] = useState({});
   const value = useMemo(
