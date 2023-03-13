@@ -33,18 +33,6 @@ describe("TextField", () => {
 
     expect(screen.getByText("이름")).toBeInTheDocument();
   });
-
-  it("renders TextField component", () => {
-    render(
-      <TextField
-        source={"password"}
-        label={"비밀번호"}
-        validate={[min(5), max(10)]}
-      />
-    );
-
-    expect(screen.getByText("비밀번호")).toBeInTheDocument();
-  });
 });
 
 describe("SelectboxField", () => {
