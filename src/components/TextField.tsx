@@ -18,11 +18,13 @@ const TextField: FunctionComponent<InputProps> = ({
     <div style={{ display: "flex", gridGap: "8px" }}>
       <label htmlFor={source}>{label}</label>
       <input
+        id={source}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         name={source}
         type={type}
         placeholder={placeholder}
+        aria-label={source}
       />
       <div>{errors[source]}</div>
     </div>
