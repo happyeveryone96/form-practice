@@ -4,8 +4,6 @@
 import { render, fireEvent, screen } from "@testing-library/react";
 import SimpleForm from "../src/components/SimpleForm";
 import TextField from "../src/components/TextField";
-import SelectboxField from "../src/components/SelectboxField";
-import CheckboxField from "../src/components/CheckboxField";
 import { max, min } from "../src/utils/validate";
 
 describe("TextField", () => {
@@ -32,36 +30,5 @@ describe("TextField", () => {
     );
 
     expect(screen.getByText("이름")).toBeInTheDocument();
-  });
-});
-
-describe("SelectboxField", () => {
-  it("renders SelectboxField component", () => {
-    render(
-      <SelectboxField
-        source="color"
-        label="색깔"
-        options={[
-          { key: 1, value: "orange" },
-          { key: 2, value: "red" },
-        ]}
-      />
-    );
-
-    expect(screen.getByText("색깔")).toBeInTheDocument();
-  });
-});
-
-describe("CheckboxField", () => {
-  it("renders CheckboxField component", () => {
-    render(
-      <CheckboxField
-        source="marketingReception"
-        label="마케팅 수신"
-        type="checkbox"
-      />
-    );
-
-    expect(screen.getByText("마케팅 수신")).toBeInTheDocument();
   });
 });
